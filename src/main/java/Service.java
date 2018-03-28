@@ -6,17 +6,30 @@ public class Service
 	
 	HashMap<Integer,Account> hmap;
 	
-	int pair = 0;
+	ObjectToJSON convert;
 	
-	int nameCounter = 0;
+	int pair, nameCounter = 0;
+	
+	String nameToFind = "James";
+	
 	public Service()
 	{
 		hmap = new HashMap<Integer,Account>();
+		
+		convert = new ObjectToJSON();
+		
 	}
 	
 	void InsertAccount(Account acc)
 	{		
 		hmap.put(pair,acc);
+		
+		String firstName = acc.getFirstName();
+		
+		if (nameToFind == firstName)
+		{
+			nameCounter++;
+		}
 		
 	}
 	
@@ -26,8 +39,7 @@ public class Service
 		
 		System.out.print(account.firstName);
 		
-		Gson gson = new Gson();
-		String json = gson.toJson(hmap);
-		System.out.println(json);
+		convert.ObjectToJSON(hmap);
+	
 	}
 }
